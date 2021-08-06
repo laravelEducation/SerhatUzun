@@ -30,6 +30,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::group(['namespace'=>'App\Http\Controllers\admin','prefix'=>'admin','as'=>'admin.'],function (){
     Route::get('/','indexController@index')->name('index');
+    Route::get('/','indexController@index')->name('index');
 });
 
 

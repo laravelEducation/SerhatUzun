@@ -24,4 +24,17 @@ Route::group(['namespace'=>'App\Http\Controllers\api'],function (){
     Route::get('/working-hours/{date?}','indexController@getWorkingHours');
     Route::post('/appointment-store','indexController@appointmentStore');
 
+    Route::group(['namespace'=>'admin','prefix'=>'admin'],function (){
+
+        Route::post('/process','indexController@process');
+        Route::get('/list','indexController@getList');
+        Route::get('/today-list','indexController@getTodayList');
+        Route::get('/last-list','indexController@getLastList');
+        Route::get('/waiting-list','indexController@getWaitingList');
+        Route::get('/cancel-list','indexController@getCancelList');
+
+
+    });
+
+
 });

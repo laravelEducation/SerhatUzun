@@ -41,7 +41,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="form-group">
-                            <input v-model="date" @change="selectDate" class="form-control" type="date">
+                            <input v-model="date" :min="minDate" @change="selectDate" class="form-control" type="date">
                         </div>
                     </div>
 
@@ -117,6 +117,7 @@
               email:null,
               phone:null,
               text:null,
+              minDate: new Date ().toISOString().slice(0,10),
               date:new Date().toISOString().slice(0,10),
               workingHours:[]
 
