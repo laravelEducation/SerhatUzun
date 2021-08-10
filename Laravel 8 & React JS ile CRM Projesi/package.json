@@ -1,0 +1,39 @@
+{
+    "private": true,
+    "scripts": {
+        "dev": "npm run development",
+        "development": "mix",
+        "watch": "mix watch",
+        "watch-poll": "mix watch -- --watch-options-poll=1000",
+        "hot": "mix watch --hot",
+        "prod": "npm run production",
+        "production": "mix --production"
+    },
+    "devDependencies": {
+        "@babel/preset-react": "^7.14.5",
+        "@types/moment": "^2.13.0",
+        "axios": "^0.21",
+        "laravel-mix": "^6.0.6",
+        "lodash": "^4.17.19",
+        "postcss": "^8.1.14",
+        "react": "^17.0.2",
+        "react-dom": "^17.0.2"
+    },
+    "dependencies": {
+        "bootstrap": "^5.0.2",
+        "cr serify": "^3.12.0",
+        "crypto-js": "^4.1.1",
+        "d3": "^7.0.0",
+        "formik": "^2.2.9",
+        "jwt-decode": "^3.1.2",
+        "jwt-encode": "^1.0.1",
+        "mobx": "^6.3.2",
+        "mobx-react": "^7.2.0",
+        "react-bootstrap": "^2.0.0-beta.4",
+        "react-router-dom": "^5.2.0",
+        "yup": "^0.32.9"
+    },
+    "browser":{
+        "crypto":false
+    }
+}
