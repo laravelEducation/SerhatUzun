@@ -10,7 +10,7 @@ const Register = (props) => {
     const [error,setError] = useState('');
 
     useEffect(() => {
-      if(props.AuthStore.appState ){
+      if(props.AuthStore.appState != null){
         if(props.AuthStore.appState.isLoggedIn){
           return props.history.push('/');
         }
@@ -32,7 +32,7 @@ const Register = (props) => {
             isLoggedIn:true,
             user:userData
           };
-          props.AuthStore.saveToken(JSON.stringify(appState));
+          props.AuthStore.saveToken(appState);
           props.history.push('/');
           //location.reload();
           alert('Kayıt Tamamlandı')

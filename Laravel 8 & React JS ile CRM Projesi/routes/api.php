@@ -14,6 +14,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
+
 Route::group([
     'prefix'=>'auth'
 ],function(){
@@ -21,6 +23,16 @@ Route::group([
     Route::post('register',[\App\Http\Controllers\AuthController::class,'register']);
 });
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+Route::group([
+    'middleware'=>['auth:api']
+],function(){
+    Route::post('/logout',[\App\Http\Controllers\AuthController::class,'logout']);
+    Route::post('/authenticate',[\App\Http\Controllers\AuthController::class,'authenticate']);
+    Route::resource('product',\App\Http\Controllers\api\product\indexController::class);
+    Route::resource('category',\App\Http\Controllers\api\category\indexController::class);
+    Route::resource('customer',\App\Http\Controllers\api\customer\indexController::class);
+    Route::resource('profile',\App\Http\Controllers\api\profile\indexController::class);
+
+  
+    
 });
