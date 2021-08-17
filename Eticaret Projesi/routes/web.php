@@ -24,9 +24,24 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/','App\Http\Controllers\AnasayfaController@index')->name('anasayfa');
 
-Route::view('/kategori','kategori');
-Route::view('/urun','urun');
-Route::view('/sepet','sepet');
+Route::get('/kategori/{slug_kategoriadi}','App\Http\Controllers\KategoriController@index')->name('kategori');
+
+Route::get('/urun/{slug_urunadi}','App\Http\Controllers\UrunController@index')->name('urun');
+
+Route::get('/sepet','App\Http\Controllers\SepetController@index')->name('sepet');
+
+Route::get('/odeme','App\Http\Controllers\OdemeController@index')->name('odeme');
+
+Route::get('/siparisler','App\Http\Controllers\SiparislerController@index')->name('siparisler');
+
+Route::get('/siparisler/{id}','App\Http\Controllers\SiparislerController@detay')->name('siparis');
+
+Route::group(['prefix'=>'kullanici'],function(){
+
+    Route::get('/oturumac','App\Http\Controllers\KullaniciController@giris_form')->name('kullanici.oturumac');
+    Route::get('/kaydol','App\Http\Controllers\KullaniciController@kaydol_form')->name('kullanici.kaydol');
+
+});
 
 
 
