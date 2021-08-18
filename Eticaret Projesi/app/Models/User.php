@@ -2,42 +2,33 @@
 
 namespace App\Models;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable;
+    use  SoftDeletes;
+    protected $table='user';
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
-    protected $fillable = [
-        'name',
-        'email',
-        'password',
+    protected $fillable = 
+    [
+        'adsoyad', 'email', 'sifre','aktivasyon_anahtari','aktif_mi','yonetici_mi'
     ];
-
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
     protected $hidden = [
-        'password',
-        'remember_token',
-    ];
+        'sifre', 'aktivasyon_anahtari',];
 
-    /**
-     * The attributes that should be cast to native types.
-     *
-     * @var array
-     */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
+    const DELETED_AT='deleted_at';
+ 
+
+    public function getAuthPassword()
+    {
+        return $this->sifre;
+    }
+    public function detay(){
+        return $this->hasOne('App\Models\KullaniciDetay')->withDefault();
+
+
+    }
+
 }

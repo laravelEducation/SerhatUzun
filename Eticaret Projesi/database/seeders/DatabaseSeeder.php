@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
         // UrunTableSeeder::factory(10)->create();
        // $this->call(KategoriTableSeeder::class);
        $this->call([KategoriTableSeeder::class]);
+       $this->call([UrunTableSeeder::class]);
 
     }
 }

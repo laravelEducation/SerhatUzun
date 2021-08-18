@@ -28,21 +28,36 @@ Route::get('/kategori/{slug_kategoriadi}','App\Http\Controllers\KategoriControll
 
 Route::get('/urun/{slug_urunadi}','App\Http\Controllers\UrunController@index')->name('urun');
 
+Route::post('/ara','App\Http\Controllers\UrunController@ara')->name('urun_ara');
+
+Route::get('/ara','App\Http\Controllers\UrunController@ara')->name('urun_ara');
+
 Route::get('/sepet','App\Http\Controllers\SepetController@index')->name('sepet');
 
-Route::get('/odeme','App\Http\Controllers\OdemeController@index')->name('odeme');
+Route::middleware(['auth'])->group(function(){
+    Route::get('/odeme','App\Http\Controllers\OdemeController@index')->name('odeme');
+    Route::get('/siparisler','App\Http\Controllers\SiparislerController@index')->name('siparisler');
+    Route::get('/siparisler/{id}','App\Http\Controllers\SiparislerController@detay')->name('siparis');
+});
 
-Route::get('/siparisler','App\Http\Controllers\SiparislerController@index')->name('siparisler');
-
-Route::get('/siparisler/{id}','App\Http\Controllers\SiparislerController@detay')->name('siparis');
 
 Route::group(['prefix'=>'kullanici'],function(){
 
     Route::get('/oturumac','App\Http\Controllers\KullaniciController@giris_form')->name('kullanici.oturumac');
+    Route::post('/oturumac','App\Http\Controllers\KullaniciController@giris');
+
     Route::get('/kaydol','App\Http\Controllers\KullaniciController@kaydol_form')->name('kullanici.kaydol');
+    Route::post('/kaydol','App\Http\Controllers\KullaniciController@kaydol');
+
+    Route::get('/aktiflestir/{anahtar}','App\Http\Controllers\KullaniciController@aktiflestir')->name('aktiflestir');
+    Route::post('/oturumukapat','App\Http\Controllers\KullaniciController@oturumukapat')->name('kullanici.oturumukapat');
 
 });
 
+Route::get('/test/mail',function(){
+    $kullanici = \App\Models\User::find(2);
+    return new App\Mail\KullaniciKayitMail($kullanici);
+});
 
 
 
