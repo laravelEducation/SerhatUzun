@@ -32,7 +32,18 @@ Route::post('/ara','App\Http\Controllers\UrunController@ara')->name('urun_ara');
 
 Route::get('/ara','App\Http\Controllers\UrunController@ara')->name('urun_ara');
 
-Route::get('/sepet','App\Http\Controllers\SepetController@index')->name('sepet');
+Route::group(['prefix'=>'sepet'],function(){
+
+    Route::get('/','App\Http\Controllers\SepetController@index')->name('sepet');
+    Route::post('/ekle','App\Http\Controllers\SepetController@ekle')->name('sepet.ekle');
+    Route::delete('/kaldir/{rowId}','App\Http\Controllers\SepetController@kaldir')->name('sepet.kaldir');
+    Route::delete('/bosalt','App\Http\Controllers\SepetController@bosalt')->name('sepet.bosalt');
+    Route::patch('/guncelle/{rowId}','App\Http\Controllers\SepetController@guncelle')->name('sepet.guncelle');
+
+
+
+
+});
 
 Route::middleware(['auth'])->group(function(){
     Route::get('/odeme','App\Http\Controllers\OdemeController@index')->name('odeme');
